@@ -4,4 +4,4 @@ build:
   script:
     - export PATH="$PATH:/root/.dotnet/tools"
     - dotnet tool install -g Wyam.Tool
-    - /root/.dotnet/tools/wyam
+    - /root/.dotnet/tools/wyam -u -v
