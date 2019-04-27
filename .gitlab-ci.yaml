@@ -1,0 +1,5 @@
+image: mcr.microsoft.com/dotnet/core/sdk:2.2
+
+build:
+  - dotnet tool install -g Wyam.Tool
+  - wyam
