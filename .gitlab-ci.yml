@@ -1,7 +1,0 @@
-image: mcr.microsoft.com/dotnet/core/sdk:2.2
-
-build:
-  script:
-    - export PATH="$PATH:/root/.dotnet/tools"
-    - dotnet tool install -g Wyam.Tool
-    - wyam -u -v
