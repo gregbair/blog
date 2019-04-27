@@ -8,4 +8,19 @@ pygmentsstyle = "vs"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disableDisqusTypes = ["page","post"]
+disableDisqusTypes = ["page","posts"]
+
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/gregbair"
+
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/gregbair"
+
+[[params.social]]
+name = "Gitlab"
+icon = "gitlab"
+url = "https://gitlab.com/gregbair"
