@@ -1,5 +1,0 @@
-[Settings]
-
-[build]
-  command = "bash build.sh"
-  publish = "output"
