@@ -1,26 +1,17 @@
 baseURL = "https://gregbair.dev/"
 languageCode = "en-us"
 title = "GregBair.Dev - A developer's blog"
-theme = "ezhil"
+theme = "binario"
+paginate = "10"
+
+[Author] # Used in authorbox
+  name = "Greg Bair"
+  bio = "John Doe's true identity is unknown. Maybe he is a successful blogger or writer."
 
 # Enable syntax highlighting.
-pygmentsstyle = "vs"
+pygmentsstyle = "dracula"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disableDisqusTypes = ["page","posts"]
-
-[[params.social]]
-name = "Twitter"
-icon = "twitter"
-url = "https://twitter.com/gregbair"
-
-[[params.social]]
-name = "GitHub"
-icon = "github"
-url = "https://github.com/gregbair"
-
-[[params.social]]
-name = "Gitlab"
-icon = "gitlab"
-url = "https://gitlab.com/gregbair"
+[permalinks]
+# posts = "/posts/:year/:month/:title/"
