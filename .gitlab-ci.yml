@@ -3,4 +3,4 @@ image: mcr.microsoft.com/dotnet/core/sdk:2.2
 build:
   script:
     - dotnet tool install -g Wyam.Tool
-    - wyam
+    - /root/.dotnet/tools/wyam
