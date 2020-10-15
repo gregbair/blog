@@ -1,7 +1,17 @@
 baseURL = "https://gregbair.dev/"
 languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "anubis"
+title = "Greg Bair"
+theme = "hello-friend"
 
 [params]
-style = "dark-without-switcher"
+    defaultTheme = "dark"
+    shoreadingTime = true
+    showMenuItems = 2
+
+[languages]
+  [languages.en]
+    title = "Greg Bair"
+
+  [languages.en.params.logo]
+    logoText = "Greg Bair"
+    logoHomeLink = "/"
