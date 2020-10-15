@@ -1,6 +1,0 @@
-baseURL: 'https://gregbair.dev/'
-languageCode: en-us
-title: My New Hugo Site
-theme: anubis
-params:
-    style: dark-without-switcher
