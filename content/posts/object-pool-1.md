@@ -8,7 +8,7 @@ slug: object-pool-intro
 date: 2020-10-21T04:32+00:00
 ---
 
-> **Note:** This is the first post in a [series](/tags/object-pool) about an object pooling pattern. You can follow along with code in this [repo on GitLab](https://gitlab.com/gregbair/object-pool). The repo will be steps ahead of this series, so don't worry if there's things in there I haven't explained. I'm using GitLab for this because I've never really used it and want to test out its features. If I move the repo, I'll update links here.
+> **Note:** This is the first post in a [series](/tags/object-pool) about an object pooling pattern. You can follow along with code in this [repo on Github](https://github.com/gregbair/object-pool). The repo will be steps ahead of this series, so don't worry if there's things in there I haven't explained.
 
 - [Overview](#overview)
 - [Real world examples](#real-world-examples)
