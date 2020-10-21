@@ -1,0 +1,14 @@
+@startuml "object-pool-components"
+
+!include C:\Users\gregb\code\puml-themes\themes\black-knight\puml-theme-black-knight.puml
+
+[ObjectPool] as op
+[Proxy] as proxy
+[Object] as obj
+[Object Factory] as fac
+
+op -down-> proxy : Creates
+proxy -right-> obj : Redirects calls
+fac -down-> obj : Creates
+op -right-> fac : calls
+@enduml
