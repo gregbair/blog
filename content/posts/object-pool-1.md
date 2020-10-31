@@ -6,6 +6,7 @@ tags:
 - patterns
 slug: object-pool-intro
 date: 2020-10-21T04:32+00:00
+draft: true
 ---
 
 > **Note:** This is the first post in a [series](/tags/object-pool) about an object pooling pattern. You can follow along with code in this [repo on Github](https://github.com/gregbair/object-pool). The repo will be steps ahead of this series, so don't worry if there's things in there I haven't explained.
