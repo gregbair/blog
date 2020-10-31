@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 29
 __lua__
 -- blackjack
--- greg bair (greg@gregbair.dev)
+-- greg bair (gregbair@gregbair.dev)
 
 function _init()
   game_over=false
