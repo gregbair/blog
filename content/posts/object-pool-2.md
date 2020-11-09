@@ -1,12 +1,11 @@
 ---
-title: Object Pool - Proxy
+title: Object Pool - Proxying calls
 tags:
 - object-pool
 - csharp
 - patterns
 slug: object-pool-proxy
 date: 2020-10-21T11:30:56+00:00
-draft: true
 ---
 
 > **Note:** This is the second post in a [series](/tags/object-pool) about an object pooling pattern. You can follow along with code in this [repo on Github](https://github.com/gregbair/object-pool). The repo will be steps ahead of this series, so don't worry if there's things in there I haven't explained.
@@ -14,13 +13,17 @@ draft: true
 - [Dynamic Proxy](#dynamic-proxy)
 - [Why a Dynamic Proxy](#why-a-dynamic-proxy)
 - [Proxy generator](#proxy-generator)
-  - [Interceptor](#interceptor)
 - [Wrapper](#wrapper)
+- [Combining the wrapper and the interceptor](#combining-the-wrapper-and-the-interceptor)
 - [Summary](#summary)
 
 ## Dynamic Proxy
 
-For our proxy object, we're going to use [Dynamic Proxy](https://www.castleproject.org/projects/dynamicproxy/) from the Castle Project. This package allows us to create a pass-through object for any type that implements interface we're going to be pooling..
+For our proxy object, we're going to use [Dynamic Proxy](https://www.castleproject.org/projects/dynamicproxy/) from the Castle Project. This package allows us to create a pass-through object for any type that implements the interface we're going to be pooling.
+
+Dynamic proxying is a form of the [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) that doesn't care what the underlying object is. Since C# is a strongly-typed language, it's burdensome to create a proxy that can handle any type - you'd need to know at compile time (when you write your code) what type you're proxying.
+
+Dynamic proxying hijacks the runtime typing, using reflection to create stub and proxy classes at runtime to allow more flexibility in situations like ours where we want to work with types that are only known at runtime.
 
 We're going to pass through any method call except one - `Dispose()`. We'll use that to return our object to the pool.
 
@@ -32,110 +35,47 @@ If you know the type of object you're pooling ahead of time, you don't need to u
 
 The dynamic proxy mechanism from the Castle Project uses what's called a proxy generator. In short, we define an interceptor that passes through all the method calls (except `Dispose`), and use that to generate at runtime a proxy object. Note that this does incur a small bit of overhead, so if you're only pooling one type, and know that type, you can skip doing this.
 
-### Interceptor
-
-Our interceptor looks like this:
-
-```csharp
-/// <summary>
-/// Intercepts calls for <typeparamref name="TProxy"/>.
-/// </summary>
-/// <typeparam name="TProxy">The type to intercept calls for.</typeparam>
-internal class PooledObjectInterceptor<TProxy> : IInterceptor
-    where TProxy : class, IDisposable
-{
-    private readonly IObjectPool<TProxy> _pool;
-    private readonly PooledObjectWrapper<TProxy> _wrapper;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="PooledObjectInterceptor{TProxy}"/> class.
-    /// </summary>
-    /// <param name="pool">The pool to which this interceptor should return objects to.</param>
-    /// <param name="wrapper">The proxy object wrapper.</param>
-    public PooledObjectInterceptor(IObjectPool<TProxy> pool, PooledObjectWrapper<TProxy> wrapper)
-    {
-        _pool = pool ?? throw new ArgumentNullException(nameof(pool));
-        _proxy = proxy ?? throw new ArgumentNullException(nameof(proxy));
-    }
-
-    /// <inheritdoc/>
-    public void Intercept(IInvocation invocation)
-    {
-        if (invocation is null)
-        {
-            throw new ArgumentNullException(nameof(invocation));
-        }
-
-        if (!invocation.Method.Name.Equals("Dispose", StringComparison.OrdinalIgnoreCase))
-        {
-            invocation.Proceed();
-        }
-        else
-        {
-            _pool.ReturnObject(_wrapper);
-        }
-    }
-}
-```
-
-Ignore what we're actually doing when we capture the `Dispose()` method, we'll explain that later.
-
-What we're doing inside the `Intercept` method is inspecting an `IInvocation` object. This object is supplied by Dynamic Proxy and contains the runtime information about the method being called. As you can see, we're capturing the `Dispose()` method and handling that specifically, but every other call, we're calling `invocation.Proceed()` which tells Dynamic Proxy to pass through to the actual object.
-
-To use this generator, you'd call:
-
-```csharp
-IFoo foo;
-var wrapper = new PooledObjectWrapper<IFoo>(foo);
-var generator = new ProxyGenerator();
-var objProxy = generator.CreateInterfaceProxyWithTarget(
-    obj,
-    new PooledObjectInterceptor<IFoo>(this, wrapper);
-);
-```
-
-At this point, `objProxy` is of type `IFoo`. Also, `this` refers to our pool, which we'll cover in the next post.
-
-Castle Project documents the different proxy target types [here](https://github.com/castleproject/Core/blob/master/docs/dynamicproxy-kinds-of-proxy-objects.md).
-
 ## Wrapper
 
-To store meta information about the object, we implement a pseudo-decorator pattern to wrap the actual proxied object. This will give us the ability in the future to store things like an ID, when the object was created, etc. to help maintain our pool. Our pool will store our objects inside this wrapper and query for information from it when making decisions about what objects to keep and which to discard.
+We also need something to wrap our object and put some metadata on it that will be  useful to the pool. Attributes like which pool it belongs to, a unique ID, and the target object are the metadata we're storing for now. Later we might add when the object was created if we need to dispose "stale" objects.
 
-```csharp
-/// <summary>
-/// A proxy to wrap objects of type <typeparamref name="TObject"/>.
-/// </summary>
-/// <typeparam name="TObject">The type of object to wrap.</typeparam>
-public class PooledObjectWrapper<TObject>
-    where TObject : class, IDisposable
+## Combining the wrapper and the interceptor
+
+For simplicity, we can combine both of these concepts into a single class, called our [`PooledObjectWrapper<TObject>`](https://github.com/gregbair/lagoon/blob/main/src/Lagoon/PooledObjectWrapper.cs#L13).
+
+As part of its implementaiton of `IInterceptor`, we have a method `Intercept(IInvocation invocation)` that we'll use to intercept method calls. Let's take a look at that method below:
+
+```c#
+// IInvocation is an object passed in by Castle Project containing metadata
+// about the method call.
+public void Intercept(IInvocation invocation)
 {
-    /// <summary>
-    /// Gets the ID of this proxy.
-    /// </summary>
-    public Guid Id { get; }
-
-    /// <summary>
-    /// Gets the actual object that's wrapped in this proxy.
-    /// </summary>
-    public TObject Actual { get; }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="PooledObjectWrapper{TObject}"/> class.
-    /// </summary>
-    /// <param name="actual">The object to be wrapped.</param>
-    public PooledObjectWrapper(TObject actual)
+    if (invocation is null)
     {
-        Actual = actual ?? throw new ArgumentNullException(nameof(actual));
-        Id = Guid.NewGuid();
+        throw new ArgumentNullException(nameof(invocation));
+    }
+
+    if (!invocation.Method.Name.Equals("Dispose", StringComparison.OrdinalIgnoreCase))
+    {
+        // We only want to intercept the Dispose method.
+        invocation.Proceed();
+    }
+    else
+    {
+        // If Dispose is called, return this object to the pool.
+        _pool.ReturnObject(this);
     }
 }
 ```
 
-Our `Actual` property is simply the proxied object created by the `ProxyGenerator`.
+Because of the way we are intercepting the `Dispose` method, we can hijack it to not actually dispose the object, but instead return it to our pool.
+
+Our interceptor/wrapper also has its own dispose method, which will be called by the pool in its pruning operation (we'll cover that later). It actually disposes the wrapped object.
 
 ## Summary
 
 We looked at how dynamic proxies work, and introduced an interceptor and a wrapper for our object.
 
 For further info about dynamic proxies and the interceptor, see the Castle Project's [docs](https://github.com/castleproject/Core/blob/master/docs/dynamicproxy.md).
+
+Next, we'll look into how the pool manages retrieving, creating, and activating objects.
