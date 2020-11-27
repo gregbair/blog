@@ -78,4 +78,4 @@ We looked at how dynamic proxies work, and introduced an interceptor and a wrapp
 
 For further info about dynamic proxies and the interceptor, see the Castle Project's [docs](https://github.com/castleproject/Core/blob/master/docs/dynamicproxy.md).
 
-Next, we'll look into how the pool manages retrieving, creating, and activating objects.
+Next, we'll look into how the pool manages retrieving, creating, activating, and disposing objects.
