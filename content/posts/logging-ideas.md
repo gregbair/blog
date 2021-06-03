@@ -5,7 +5,6 @@ tags:
 - logging
 - patterns
 slug: logging-ideas
-draft: true
 date: 2021-06-03T05:32:00+00:00
 ---
 
