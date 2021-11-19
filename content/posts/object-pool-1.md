@@ -58,3 +58,5 @@ The factory is responsible for actually creating the object, as the pool does no
 ## Summary
 
 This post hopefully gave a good intro into the why and what of pooling mechanisms. In the next post, we'll go more in depth into the proxy, including talking about dynamic proxies and introducing [Dyanmic Proxy](https://www.castleproject.org/projects/dynamicproxy/) from the Castle Project.
+
+{{< chat object-pool-1 >}}
