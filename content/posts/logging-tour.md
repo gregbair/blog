@@ -31,3 +31,5 @@ If you know of ones I've missed, let me know!
 Note that I've included Microsoft.Extensions.Logging because it does have a default Console output (among others).
 
 ## Speed
+
+I did a couple benchmarks
