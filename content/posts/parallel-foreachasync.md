@@ -1,7 +1,6 @@
 ---
 title: Parallel.ForEachAsync Deep Dive
 publishDate: 2021-12-12T00:00:00+00:00
-draft: true
 ---
 
 > This post contains a very technical dive. It is of intermediate complexity, and assumes a basic knowledge of how async/await works.
