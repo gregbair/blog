@@ -2,10 +2,11 @@
 title: Parallel.ForEachAsync Deep Dive
 publishDate: 2021-12-12T00:00:00+00:00
 ---
-
-> This post contains a very technical dive. It is of intermediate complexity, and assumes a basic knowledge of how async/await works.
+> This post is part of the [2021 C# Advent calendar](https://csadvent.christmas/). Check it out for more C# goodness!
 
 ## Intro
+
+> This post contains a very technical dive. It is of intermediate complexity, and assumes a basic knowledge of how async/await works.
 
 .NET 6 introduced a small feature that's important, but was probably overlooked - [`Parallel.ForEachAsync`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.foreachasync?view=net-6.0).
 
