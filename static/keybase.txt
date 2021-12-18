@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/gregbair
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://gregbair.dev
+  * I am gregbair (https://keybase.io/gregbair) on keybase.
+  * I have a public key with fingerprint 449C 32C2 8A48 EA2A A363  52E0 B540 4860 9FD8 3590
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012063975b37feb4b8d4bfc3715319b03ef66bd52bebc32a7b14ff2f64ca4a3f4c0a0a",
+      "fingerprint": "449c32c28a48ea2aa36352e0b54048609fd83590",
+      "host": "keybase.io",
+      "key_id": "b54048609fd83590",
+      "kid": "01017cae0f047872dc24399a528389ccf6ce6053c9f930709d9f548e65de7c3d7b2f0a",
+      "uid": "890208e332d2d4a4a0a677707d9fd300",
+      "username": "gregbair"
+    },
+    "service": {
+      "hostname": "gregbair.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1639848777,
+  "expire_in": 157680000,
+  "prev": "7858a85a38a24b2f96ce0174023e83f17b2e27b0702f0297ea392d4a3d9130f8",
+  "seqno": 21,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMNuAnicbVJ/UBRVHD9+poxFk0EKozFbOtjcMHvv7d7uXlNeNFZHOJLIjxHyeLv7
+9lh+3F33g0B+nhBonI16l+mUGEqJNTpS0hAaKeo4iUQJBsZoxijUcNakqCBlvWXy
+n6b9582+9/l8vp/P573TD0foYsI6za8U7B1ht4X1ndzl1aGeREslJTrkCspUSRXj
+uQWXyNjtsRarMmWiaAOgjVDgWBFyChYZkZcZUZEgZ2ChQRBpiBWjUZRZIGJRggBx
+ooFRFKAYGQkxCCqMRCMaUXpKUe027HK6VLuHyDKMQNAS4BHDYwQQgkbIAkyLLEMz
+vJEWFJmHrEATYqHDrTGIORG5cYrqIHvkxzpn73/wD3zTBk5CmFZohuM5IEuAgYKA
+WMBDXpAkxShhI81CSVAESHO0IAsKS7wYWRlzEpQ5EShzvr1zcrxAA5rHEAIZyAxJ
+RiMjx3E0R2gypLW5Xjd22VEpJmibC9tEpLqoaj1FdstUCWvFakn+g0iRcRnhOl0O
+j0NylJCTQo/H6TZpTE+FU4O+iUXrvyJWUbXLpEfCKMMut+qwUyYDQUoeVVM1kIvi
+GZ740lO43Km6sFXVECxn5GnyaXPIOBPF8SyPeBZBHgGGBBVIGaQuhgYQ81AxkPAY
+cCKphZQABA4jKGixoSwYIK3wlBbrDbuDMgED8YlsRNOt2uzI43Vhqrr3ZH6kLixG
+Fx0Vrj0wXcz8Rx88u9zu2PvJGdP479NvN1/tWvBVTuTBtIFvz1eEcy+tMtWeue9u
+yZiw5C588ZdgwPxOX/a+YNw5anl0Zpf6cmByy+SPkQcidlcM9Ic3omUfpWf4Qh2o
+ynLirYnWgku6bMVz4tz82+UvBBtTdzIb6z6+tx4squaa4/NN3/+UFnVseHjfik/S
+Z3/1Wg3X65aW9tRb3s251Nn8zDczza/2q1MXt5v/ujdx5AyajRyaHWwIViUXmgsq
+jy8ZSxhrnDe5znFjTezU6LZTX6fnjUU35aSn2X/4LPTYUEHNpt5j2TdqQ7/FrahJ
+HW4dmTkauHN2w0BV/e/+jp+fbsnM9BxevBbO5PkuRz0+3ddz4Asb3mJpre8XA5nj
++j8nvtNnbY++WDSvPbD5gveOe2Fc4+o2W2vRKTb+bkth85SZPVSU19o0HvfHxg2D
+7b262BarJ9O/+vjimOdiPk94/opPmHz9oXbFNeHTlxz0+1ZNhxp9uTvAsv2lT7Il
+dU1W39olbaOD0zmBs9ITzxa1KaHOTxNHG7rvXp7s7nK+1rRXF7l0K2iKD6amlyQV
+O6mx965n3bpW6R8J5n/w1Lrxw7tMfbe/TKIGsxYl9m1NYXdcWe5YcHP/Tq+Z6nk/
+Oelq5Z4I39CHcl05davzWsf6lEILB8JWdp1/ZPeRzSFd7Zqho4kt8YdqolcGxxPy
+9tzsSGmQYy9sKvL/AxGcwyY=
+=r5TF
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/gregbair
+
+==================================================================
