@@ -40,15 +40,19 @@ theme = "terminal"
   [languages.en]
     languageName = "English"
     title = "Greg Bair"
-    subtitle = "A developer's blog"
-    owner = ""
-    keywords = ""
-    copyright = ""
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
+    copyright = "Copyright 2024 Greg Bair. All rights reserved."
+    
+
+    [languages.en.params]
+      missingBackButtonLabel = "Back to home page"
+      owner = "Greg Bair"
+      keywords = "development, c#, programming"
+      menuMore = "Show more"
+      readOtherPosts = "Read other posts"
+      missingContentMessage = "Page not found..."
+      readMore = "Read more"
+      subtitle = "A developer's blog"
+
 
     [languages.en.params.logo]
       logoText = "Greg Bair"
