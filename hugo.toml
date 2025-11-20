@@ -1,0 +1,4 @@
+baseURL = 'https://blog.tailda5042.ts.net/'
+languageCode = 'en-us'
+title = 'Greg Bair'
+theme= 'nostyleplease'

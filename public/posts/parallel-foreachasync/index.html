@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="description" content="
+This post is part of the 2021 C# Advent calendar. Check it out for more C# goodness!
+
+Intro
+
+This post contains a very technical dive. It is of intermediate complexity, and assumes a basic knowledge of how async/await works.
+
+.NET 6 introduced a small feature that&rsquo;s important, but was probably overlooked - Parallel.ForEachAsync.
+This is a (IMO) pretty powerful and elegant implementation of something that&rsquo;s been missing for a while from .NET - parallel processing of async operations over a collection.">  
+
+  <title>
+    
+      Parallel.ForEachAsync Deep Dive
+    
+  </title>
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/" />
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.900100e9dbee2d56c58fac8bb717037cae7e26a9c36c29d2ff587bdd65f0cbbe510b41d81a3bb234919cdfdc7550d786b2fab70c8fc507772d732fe097106d12.css" integrity="sha512-kAEA6dvuLVbFj6yLtxcDfK5&#43;JqnDbCnS/1h73WXwy75RC0HYGjuyNJGc39x1UNeGsvq3DI/FB3ctcy/glxBtEg==" />
+  
+</head>
+<body a="auto">
+        <main class="page-content" aria-label="Content">
+            <div class="w">
+                <div class="post-meta">
+                    <a href="/">..</a>
+
+                    <p>
+                        <time datetime="2021-12-12 00:00:00 &#43;0000 &#43;0000">
+                            2021-12-12
+                        </time>
+                    </p>
+                </div>
+
+<article>
+    <h1>Parallel.ForEachAsync Deep Dive</h1>
+
+    
+
+    <blockquote>
+<p>This post is part of the <a href="https://csadvent.christmas/">2021 C# Advent calendar</a>. Check it out for more C# goodness!</p>
+</blockquote>
+<h2 id="intro">Intro</h2>
+<blockquote>
+<p>This post contains a very technical dive. It is of intermediate complexity, and assumes a basic knowledge of how async/await works.</p>
+</blockquote>
+<p>.NET 6 introduced a small feature that&rsquo;s important, but was probably overlooked - <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.foreachasync?view=net-6.0"><code>Parallel.ForEachAsync</code></a>.</p>
+<p>This is a (IMO) pretty powerful and elegant implementation of something that&rsquo;s been missing for a while from .NET - parallel processing of async operations over a collection.</p>
+<p><code>Parallel.ForEach</code> has been in the BCL for a long time, but there hasn&rsquo;t been a good way to do something similar for async operations on collections.</p>
+<h2 id="usage">Usage</h2>
+<p>The basic usage of this method is thus:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> nums = Enumerable.Range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">100</span>).ToArray();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> Parallel.ForEachAsync(nums, <span style="color:#66d9ef">async</span> (i, token) =&gt;
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Console.WriteLine(<span style="color:#e6db74">$&#34;Starting iteration {i}&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> Task.Delay(<span style="color:#ae81ff">1000</span>, token);
+</span></span><span style="display:flex;"><span>    Console.WriteLine(<span style="color:#e6db74">$&#34;Finishing iteration {i}&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>What this gives you is a basic foreach loop over your collection, in parallel, with safeguards in place to not overwhelm your system (kinda).</p>
+<blockquote>
+<p>NOTE: I would not actually use the <code>ForEachAsync&lt;TSource&gt;(IAsyncEnumerable&lt;TSource&gt;, Func&lt;TSource,CancellationToken,ValueTask&gt;)</code> overload of this method. Below is why the better, safer option is <code>ForEachAsync&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, ParallelOptions, Func&lt;TSource,CancellationToken,ValueTask&gt;)</code>.</p>
+</blockquote>
+<p>In the invocation above, we&rsquo;re not specifying a <em>degree of parallelism (DoP)</em> constraint, meaning we&rsquo;re not saying how many iterations of the lambda to run at once. So what happens? You get the default, which is the number returned by <code>Environment.ProcessorCount</code>. That property, though, is misnamed, as it&rsquo;s not the number of processors, but the number of <em>cores</em> your system has. (Mine shows 16, as I have an AMD Ryzen 7, which has 8 physical cores + hyperthreading).</p>
+<p>The safer thing to do is to specify a max DoP. The right number is the classic developer answer &ldquo;it depends&rdquo;. It depends on your system, the size of your collection, a host of factors that are outside the scope of this post. Your best bet is to make it configurable and test a lot of different values.</p>
+<p>You specify that using the <code>ParallelOptions</code> class like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> nums = Enumerable.Range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">100</span>).ToArray();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> Parallel.ForEachAsync(nums, <span style="color:#66d9ef">new</span> ParallelOptions { MaxDegreeOfParallelism = <span style="color:#ae81ff">3</span> }, <span style="color:#66d9ef">async</span> (i, token) =&gt;
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Console.WriteLine(<span style="color:#e6db74">$&#34;Starting iteration {i}&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> Task.Delay(<span style="color:#ae81ff">1000</span>, token);
+</span></span><span style="display:flex;"><span>    Console.WriteLine(<span style="color:#e6db74">$&#34;Finishing iteration {i}&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Here, the max DoP is 3, meaning only 3 invocations of our lambda will be running at once.</p>
+<p>There are other properties in the options class, but that&rsquo;s not my focus. Let&rsquo;s get to the meat and potatoes:</p>
+<h2 id="how-does-it-work">How does it work?</h2>
+<p>For the rest of this post, I&rsquo;ll be referencing the <a href="https://source.dot.net">.NET Source Browser</a>.</p>
+<p><a href="https://source.dot.net/#System.Threading.Tasks.Parallel/System/Threading/Tasks/Parallel.ForEachAsync.cs,88">This is the implementation</a> of <code>ForEachAsync</code>. There is another implementation and set of overloads dealing with <code>IAsyncEnumberable</code>, but the only difference is how it&rsquo;s disposed.</p>
+<p>The first thing this method does is do some basic validation, then [sets up a <code>taskBody</code> variable of <code>Func&lt;object, Task&gt;</code>].</p>
+<p>This func sets up the actual work to do, let&rsquo;s step through it.</p>
+<p>A <code>SyncForEachAsyncState&lt;TSource&gt;</code> object is set up, which is just a bag of state for managing operations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> state = (SyncForEachAsyncState&lt;TSource&gt;)o;
+</span></span></code></pre></div><p>We then loop while the state&rsquo;s <code>CancellationTokenSource</code> is still valid.</p>
+<p>We lock the state and grab the next item in the collection we&rsquo;re iterating over.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>TSource element;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">lock</span> (state)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (!state.Enumerator.MoveNext())
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    element = state.Enumerator.Current;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This lock is important, as contention for items in the collection.</p>
+<p>We then, if we haven&rsquo;t launched a worker (we&rsquo;ll get to workers in the next section), launch a worker.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (!launchedNext)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    launchedNext = <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    state.QueueWorkerIfDopAvailable();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We only do this once because each worker is responsible for the launching the next one, and the method it calls is not thread-safe itself.</p>
+<p>We then call <code>LoopBody</code> on the <code>state</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> state.LoopBody(element, state.Cancellation.Token);
+</span></span></code></pre></div><p>This is just a delegate representing the one passed in as <code>body</code> to the <code>ForEachAsync</code> method This is where your body is called, and the item from the collection for this iteration is passed in, and matches the <code>Func&lt;IEnumerable&lt;TSource&gt;, CancellationToken, ValueTask&gt;</code> signature on the lambda.</p>
+<p>The <code>finally</code> block is also important here, as it does cleanup on the state and marks it complete so control can be handled back to the caller.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span> <span style="color:#66d9ef">finally</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If we&#39;re the last worker to complete, clean up and complete the operation.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (state.SignalWorkerCompletedIterating())
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            state.Dispose();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">catch</span> (Exception e)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            state.RecordException(e);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Finally, complete the task returned to the ForEachAsync caller.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// This must be the very last thing done.</span>
+</span></span><span style="display:flex;"><span>        state.Complete();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Pulling back, the final thing thing we do is kick off the process, by constructing our state and queuing the first worker:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> state = <span style="color:#66d9ef">new</span> SyncForEachAsyncState&lt;TSource&gt;(source, taskBody, dop, scheduler, cancellationToken, body);
+</span></span><span style="display:flex;"><span>state.QueueWorkerIfDopAvailable();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> state.Task;
+</span></span></code></pre></div><p>Since our <code>taskBody</code> Func always kicks off the next worker, this is all that needs to be called and our Func will handle the rest.</p>
+<h3 id="queuing-workers">Queuing workers</h3>
+<p>The <code>SyncForEachAsyncState</code> class has (in its base class) <a href="https://source.dot.net/#System.Threading.Tasks.Parallel/System/Threading/Tasks/Parallel.ForEachAsync.cs,420">the <code>QueueWorkerIfDopAvailable()</code> method</a>.</p>
+<p><code>Dop</code> in the method name is the degree of parallelism (DoP) we discussed above. It will queue up a worker by calling either <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.threadpool.unsafequeueuserworkitem?view=net-6.0#System_Threading_ThreadPool_UnsafeQueueUserWorkItem_System_Threading_IThreadPoolWorkItem_System_Boolean_"><code>ThreadPool.UnsafeQueueUserWorkItem()</code></a> or <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskfactory.startnew?view=net-6.0#System_Threading_Tasks_TaskFactory_StartNew_System_Action_System_Threading_CancellationToken_System_Threading_Tasks_TaskCreationOptions_System_Threading_Tasks_TaskScheduler_"><code>Task.Factory.StartNew(Action, CancellationToken, TaskCreationOptions, TaskScheduler)</code></a>, but only if the DoP has available room.</p>
+<p>Let&rsquo;s take a look.</p>
+<p>First, after checking to see if we have remaining DoP, we decrement the DoP.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_remainingDop &gt; <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    _remainingDop--;
+</span></span></code></pre></div><p>After that, we increment <code>_completionRefCount</code>. This actually counts the number of workers running, so I&rsquo;m not sure why it&rsquo;s named <code>completion</code>.</p>
+<p>Above, in our finally block in <code>ForEachAsync</code>, we had this line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (state.SignalWorkerCompletedIterating())
+</span></span></code></pre></div><p>This method decrements the <code>_completionRefCount</code> and if it&rsquo;s now 0, knows that all of our workers are completed.</p>
+<p>Finally then start the worker.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>Interlocked.Increment(<span style="color:#66d9ef">ref</span> _completionRefCount);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_scheduler == TaskScheduler.Default)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If the scheduler is the default, we can avoid the overhead of the StartNew Task by just queueing</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// this state object as the work item.</span>
+</span></span><span style="display:flex;"><span>    ThreadPool.UnsafeQueueUserWorkItem(<span style="color:#66d9ef">this</span>, preferLocal: <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// We&#39;re targeting a non-default TaskScheduler, so queue the task body to it.</span>
+</span></span><span style="display:flex;"><span>    Task.Factory.StartNew(_taskBody!, <span style="color:#66d9ef">this</span>, <span style="color:#66d9ef">default</span>(CancellationToken), TaskCreationOptions.DenyChildAttach, _scheduler);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>In this post, we saw that the new <code>Parallel.ForEachAsync()</code> method is quite complex, and is a great way to safely do async processes on a collection.</p>
+<p>We also saw how it manages the complexity of this operation.</p>
+<p>Hopefully, this will help you understand what is going on under the hood.</p>
+
+</article>
+
+            </div>
+        </main>
+    </body></html>

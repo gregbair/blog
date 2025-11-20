@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Patterns on Greg Bair</title>
+    <link>http://localhost:1313/tags/patterns/</link>
+    <description>Recent content in Patterns on Greg Bair</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Jun 2021 05:32:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/patterns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logging Ideas</title>
+      <link>http://localhost:1313/posts/logging-ideas/</link>
+      <pubDate>Thu, 03 Jun 2021 05:32:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/logging-ideas/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been thinking lately about logging, specifically in C#/.NET. In fact, every few months, I joke around with others at work that I&amp;rsquo;m going to end up writing my own logging framework.&lt;/p&gt;&#xA;&lt;p&gt;There are a few things I want from a logging subsytem -&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#fast&#34;&gt;Fast&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#highly-configurable-with-sane-defaults&#34;&gt;Highly configurable with sane defaults&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#well-tested&#34;&gt;Well-tested&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#documented&#34;&gt;Documented&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#extensible&#34;&gt;Extensible&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#benchmarked&#34;&gt;Benchmarked&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#runtime-configurability&#34;&gt;Runtime configurability&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#instrumented&#34;&gt;Instrumented&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#best-effort&#34;&gt;Best effort&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#integration-with-net-logging-framework&#34;&gt;Integration with .NET logging framework&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll expand on these. In future posts, I&amp;rsquo;ll evaluate what&amp;rsquo;s out there with current libraries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Object Pool - Proxying calls</title>
+      <link>http://localhost:1313/posts/object-pool-proxy/</link>
+      <pubDate>Wed, 21 Oct 2020 11:30:56 +0000</pubDate>
+      <guid>http://localhost:1313/posts/object-pool-proxy/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This is the second post in a &lt;a href=&#34;http://localhost:1313/tags/object-pool&#34;&gt;series&lt;/a&gt; about an object pooling pattern. You can follow along with code in this &lt;a href=&#34;https://github.com/gregbair/object-pool&#34;&gt;repo on Github&lt;/a&gt;. The repo will be steps ahead of this series, so don&amp;rsquo;t worry if there&amp;rsquo;s things in there I haven&amp;rsquo;t explained.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#dynamic-proxy&#34;&gt;Dynamic Proxy&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-a-dynamic-proxy&#34;&gt;Why a Dynamic Proxy&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#proxy-generator&#34;&gt;Proxy generator&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#wrapper&#34;&gt;Wrapper&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#combining-the-wrapper-and-the-interceptor&#34;&gt;Combining the wrapper and the interceptor&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;dynamic-proxy&#34;&gt;Dynamic Proxy&lt;/h2&gt;&#xA;&lt;p&gt;For our proxy object, we&amp;rsquo;re going to use &lt;a href=&#34;https://www.castleproject.org/projects/dynamicproxy/&#34;&gt;Dynamic Proxy&lt;/a&gt; from the Castle Project. This package allows us to create a pass-through object for any type that implements the interface we&amp;rsquo;re going to be pooling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Object Pool - An Introduction</title>
+      <link>http://localhost:1313/posts/object-pool-intro/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/object-pool-intro/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This is the first post in a &lt;a href=&#34;http://localhost:1313/tags/object-pool&#34;&gt;series&lt;/a&gt; about an object pooling pattern. You can follow along with code in this &lt;a href=&#34;https://github.com/gregbair/object-pool&#34;&gt;repo on Github&lt;/a&gt;. The repo will be steps ahead of this series, so don&amp;rsquo;t worry if there&amp;rsquo;s things in there I haven&amp;rsquo;t explained.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#real-world-examples&#34;&gt;Real world examples&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#microsoft-sqlclient&#34;&gt;Microsoft SqlClient&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#ldaptive&#34;&gt;Ldaptive&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#components-of-a-pool&#34;&gt;Components of a pool&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#object-pool&#34;&gt;Object Pool&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#object&#34;&gt;Object&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#proxy&#34;&gt;Proxy&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#object-factory&#34;&gt;Object Factory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;An Object pool is a pattern used to maintain a pool of objects (&lt;em&gt;natch&lt;/em&gt;) that is useful in situations where initialization of those objects is expensive, such as database connections or network connections in general.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
