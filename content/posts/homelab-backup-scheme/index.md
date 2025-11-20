@@ -1,6 +1,6 @@
 +++
 date = '2025-11-20T04:17:21-05:00'
-draft = true
+draft = false
 title = 'My Homelab Backup Scheme'
 toc = true
 +++
