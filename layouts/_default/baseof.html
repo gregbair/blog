@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode }}">
+    {{- partial "head.html" . -}}
+    <body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
+        <main class="page-content" aria-label="Content">
+            <div class="w">
+                {{- block "main" . }}{{- end }}
+                {{ partial "footer.html" }}
+            </div>
+        </main>
+        <script async src="https://ackee.gregbair.blog/gregdomain.js" data-ackee-server="https://ackee.gregbair.blog" data-ackee-domain-id="9648db8d-cb6f-4055-b8fd-f6d5034884c9"></script>
+    </body>
+</html>
