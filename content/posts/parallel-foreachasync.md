@@ -1,6 +1,8 @@
 ---
 title: Parallel.ForEachAsync Deep Dive
 publishDate: 2021-12-12T00:00:00+00:00
+toc: true
+tocBorder: true
 ---
 > This post is part of the [2021 C# Advent calendar](https://csadvent.christmas/). Check it out for more C# goodness!
 
