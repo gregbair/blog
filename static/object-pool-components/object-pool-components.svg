@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="213.5417px" preserveAspectRatio="none" style="width:363px;height:213px;background:#000000;" version="1.1" viewBox="0 0 363 213" width="363.5417px" zoomAndPan="magnify"><defs><linearGradient id="g1x7si8v4z2cdz0" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#595959"/><stop offset="100%" stop-color="#262626"/></linearGradient></defs><g><!--MD5=[c85c3f7a8a2bade579e4fd3bd13e094e]
+entity op--><rect fill="url(#g1x7si8v4z2cdz0)" height="56.2174" rx="4.1667" ry="4.1667" style="stroke: #262626; stroke-width: 1.5625;" width="121.875" x="7.2917" y="7.2917"/><rect fill="url(#g1x7si8v4z2cdz0)" height="10.4167" style="stroke: #262626; stroke-width: 1.5625;" width="15.625" x="108.3333" y="12.5"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="106.25" y="14.5833"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="106.25" y="18.75"/><text fill="#FFF200" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="69.7917" x="28.125" y="44.9361">ObjectPool</text><!--MD5=[e937783d151d78c9e87fd4c0d99f7485]
+entity proxy--><rect fill="url(#g1x7si8v4z2cdz0)" height="56.2174" rx="4.1667" ry="4.1667" style="stroke: #262626; stroke-width: 1.5625;" width="86.4583" x="11.4583" y="152.0833"/><rect fill="url(#g1x7si8v4z2cdz0)" height="10.4167" style="stroke: #262626; stroke-width: 1.5625;" width="15.625" x="77.0833" y="157.2917"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="75" y="159.375"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="75" y="163.5417"/><text fill="#FFF200" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="34.375" x="32.2917" y="189.7278">Proxy</text><!--MD5=[ec624eb821821a1089bf1c8c9c4561aa]
+entity obj--><rect fill="url(#g1x7si8v4z2cdz0)" height="56.2174" rx="4.1667" ry="4.1667" style="stroke: #262626; stroke-width: 1.5625;" width="93.75" x="241.1458" y="152.0833"/><rect fill="url(#g1x7si8v4z2cdz0)" height="10.4167" style="stroke: #262626; stroke-width: 1.5625;" width="15.625" x="314.0625" y="157.2917"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="311.9792" y="159.375"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="311.9792" y="163.5417"/><text fill="#FFF200" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="261.9792" y="189.7278">Object</text><!--MD5=[345f4e7817ceec2f342acdd59e178ea8]
+entity fac--><rect fill="url(#g1x7si8v4z2cdz0)" height="56.2174" rx="4.1667" ry="4.1667" style="stroke: #262626; stroke-width: 1.5625;" width="145.8333" x="211.9792" y="7.2917"/><rect fill="url(#g1x7si8v4z2cdz0)" height="10.4167" style="stroke: #262626; stroke-width: 1.5625;" width="15.625" x="336.9792" y="12.5"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="334.8958" y="14.5833"/><rect fill="url(#g1x7si8v4z2cdz0)" height="2.0833" style="stroke: #262626; stroke-width: 1.5625;" width="4.1667" x="334.8958" y="18.75"/><text fill="#FFF200" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="93.75" x="232.8125" y="44.9361">Object Factory</text><!--MD5=[c46fff67f9a8b9f9991b24497dd490f4]
+link op to proxy--><path d="M65.586,63.6777 C63.3584,87.4961 60.1669,121.6213 57.8129,146.7906 " fill="none" id="op-to-proxy" style="stroke: #303030; stroke-width: 3.125;"/><polygon fill="#303030" points="57.324,152.0186,62.3457,143.0725,57.8091,146.833,54.0486,142.2963,57.324,152.0186" style="stroke: #303030; stroke-width: 3.125;"/><text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="51.0417" x="69.2708" y="112.6444">Creates</text><!--MD5=[8ce18129d6cd9591c5681eed3e457869]
+link proxy to obj--><path d="M98.0289,180.2083 C136.8771,180.2083 193.9666,180.2083 235.4177,180.2083 " fill="none" id="proxy-to-obj" style="stroke: #303030; stroke-width: 3.125;"/><polygon fill="#303030" points="240.9033,180.2083,231.5283,176.0417,235.695,180.2083,231.5283,184.375,240.9033,180.2083" style="stroke: #303030; stroke-width: 3.125;"/><text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="94.7917" x="122.1354" y="168.8944">Redirects calls</text><!--MD5=[dab3a1ba2bbe02dd1019c3b04e87c7cf]
+link fac to obj--><path d="M285.5058,63.6777 C286.0199,87.4961 286.7564,121.6213 287.2996,146.7906 " fill="none" id="fac-to-obj" style="stroke: #303030; stroke-width: 3.125;"/><polygon fill="#303030" points="287.4124,152.0186,291.3756,142.5558,287.2999,146.8115,283.0442,142.7358,287.4124,152.0186" style="stroke: #303030; stroke-width: 3.125;"/><text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="51.0417" x="292.1875" y="112.6444">Creates</text><!--MD5=[d53bc01da51f03e69756a4ab59e6b068]
+link op to fac--><path d="M129.4483,35.4167 C153.3981,35.4167 181.1633,35.4167 206.5451,35.4167 " fill="none" id="op-to-fac" style="stroke: #303030; stroke-width: 3.125;"/><polygon fill="#303030" points="211.9228,35.4167,202.5478,31.25,206.7145,35.4167,202.5478,39.5833,211.9228,35.4167" style="stroke: #303030; stroke-width: 3.125;"/><text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacingAndGlyphs" textLength="29.1667" x="155.9896" y="24.1028">calls</text><!--MD5=[7351afa0c7ff39ef0ab931237b8b9fcd]
+@startuml "object-pool-components"
+
+''
+'' Colors representing the black knight
+''
+'' Author: Brett Schwarz
+
+!$THEME = "black-knight"
+
+!if %not(%variable_exists("$BGCOLOR"))
+!$BGCOLOR = "black"
+!endif
+
+skinparam backgroundColor $BGCOLOR
+
+''
+'' Colors taken from the _default_colors.scss file
+''
+!$PRIMARY = "#303030"
+!$PRIMARY_DARK = "#262626"
+!$PRIMARY_LIGHT = "#595959"
+' !$PRIMARY_TEXT = "#0060a8"
+!$PRIMARY_TEXT = "#fff200"
+!$SECONDARY = "#484848"
+!$SECONDARY_DARK = "#3a3a3a"
+!$SECONDARY_LIGHT = "#6d6d6d"
+!$SECONDARY_TEXT = "#fefefe"
+!$SUCCESS = "#00FF00"
+!$SUCCESS_DARK = "#00cc00"
+!$SUCCESS_LIGHT = "#33ff33"
+!$INFO = "#0060a8"
+!$INFO_DARK = "#004d86"
+!$INFO_LIGHT = "#3380b9"
+!$WARNING = "#ff8000"
+!$WARNING_DARK = "#cc6600"
+!$WARNING_LIGHT = "#ff9933"
+!$WARNING_TEXT = "#222222"
+!$DANGER = "#ff0000"
+!$DANGER_DARK = "#cc0000"
+!$DANGER_LIGHT = "#ff3333"
+!$LIGHT = "#fff200"
+!$DARK = "#484848"
+
+!procedure $success($msg)
+  <font color=$SUCCESS><b>$msg
+!endprocedure
+
+!procedure $failure($msg)
+  <font color=$DANGER><b>$msg
+!endprocedure
+
+!procedure $warning($msg)
+  <font color=$WARNING><b>$msg
+!endprocedure
+
+!procedure $primary_scheme()
+	FontColor $PRIMARY_TEXT
+	BorderColor $PRIMARY_DARK
+	BackgroundColor $PRIMARY_LIGHT-$PRIMARY_DARK
+!endprocedure
+
+skinparam  {
+    defaultFontName   "Verdana"
+    defaultFontSize   12
+    defaultTextAlignment center
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+    ' TitleFontColor $PRIMARY_TEXT
+}
+
+''
+'' Global Default Values
+''
+skinparam defaultFontName       "Verdana"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           8
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               5
+skinparam ArrowColor            $DARK
+skinparam stereotype {
+    CBackgroundColor $SECONDARY_DARK
+    CBorderColor $SECONDARY_LIGHT
+    ABackgroundColor $SUCCESS_LIGHT
+    ABorderColor $SUCCESS_DARK
+    IBackgroundColor $DANGER_LIGHT
+    IBorderColor $DANGER_DARK
+    EBackgroundColor $WARNING_LIGHT
+    EBorderColor $WARNING_DARK
+    NBackgroundColor $INFO_LIGHT
+    NBorderColor $INFO_DARK
+}
+skinparam title {
+	FontColor	                 $SECONDARY_TEXT
+	BorderColor	                 $SECONDARY_DARK
+	FontSize	    	         20
+	BorderRoundCorner            8
+	BorderThickness 	         1
+	BackgroundColor              $SECONDARY_LIGHT-$SECONDARY
+}
+
+
+skinparam legend {
+	BackgroundColor $PRIMARY
+	BorderColor $PRIMARY_DARK
+	FontColor $PRIMARY_TEXT
+}
+
+!startsub swimlane
+	skinparam swimlane {
+	BorderColor $INFO
+	BorderThickness 2
+	TitleBackgroundColor  $SECONDARY_LIGHT-$SECONDARY
+	TitleFontColor $PRIMARY
+}
+!endsub
+
+!startsub activity
+skinparam activity {
+	$primary_scheme()
+	BarColor $SUCCESS
+	StartColor $INFO
+	EndColor $INFO
+	''
+	DiamondBackgroundColor $SECONDARY_LIGHT-$SECONDARY_DARK
+  	DiamondBorderColor $SECONDARY_DARK
+  	DiamondFontColor $SECONDARY_TEXT
+}
+!endsub
+
+!startsub participant
+
+skinparam participant {
+	$primary_scheme()
+	ParticipantBorderThickness 2
+}
+!endsub
+
+!startsub actor
+
+skinparam actor {
+	$primary_scheme()
+}
+!endsub
+
+!startsub arrow
+
+skinparam arrow {
+	Thickness 3
+	Color $PRIMARY
+	FontColor $FGCOLOR
+}
+!endsub
+
+
+!startsub sequence
+
+skinparam sequence {
+	BorderColor $PRIMARY
+	' For some reason sequence title font color does not pick up from global
+	TitleFontColor $PRIMARY
+	BackgroundColor $BGCOLOR
+	StartColor $PRIMARY
+	EndColor $PRIMARY
+	''
+	BoxBackgroundColor $BGCOLOR
+	BoxBorderColor $DARK
+	BoxFontColor $DARK
+	''
+	LifeLineBorderColor $SECONDARY
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor $SECONDARY_DARK
+	''
+	GroupBorderColor $DARK
+	GroupFontColor $DARK
+	GroupHeaderFontColor $INFO
+	GroupBackgroundColor $SECONDARY
+	GroupHeaderBackgroundColor $BGCOLOR
+	''
+	DividerBackgroundColor $DARK
+    DividerBorderColor $DARK
+    DividerBorderThickness 2
+    DividerFontColor $LIGHT
+	''
+	ReferenceBackgroundColor $BGCOLOR
+	ReferenceBorderColor $DARK
+	ReferenceFontColor $SECONDARY_TEXT
+	ReferenceHeaderBackgroundColor $SECONDARY
+}
+!endsub
+
+!startsub partition
+
+skinparam partition {
+	BorderColor $PRIMARY
+	FontColor $PRIMARY_LIGHT
+	BackgroundColor $BGCOLOR
+}
+!endsub
+
+!startsub collections
+
+skinparam collections {
+	$primary_scheme()
+}
+!endsub
+
+!startsub control
+
+skinparam control {
+	$primary_scheme()
+}
+!endsub
+
+!startsub entity
+
+skinparam entity {
+	$primary_scheme()
+}
+!endsub
+
+!startsub boundary
+
+skinparam boundary {
+	$primary_scheme()
+}
+!endsub
+
+!startsub agent
+
+skinparam agent {
+	BackgroundColor $WARNING
+	BorderColor $WARNING_LIGHT
+	FontColor $DARK
+}
+!endsub
+
+!startsub note
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor $INFO
+	BorderColor $INFO_DARK
+	FontColor $WHITE
+}
+!endsub
+
+!startsub artifact
+
+skinparam artifact {
+	BackgroundColor $DARK
+	BorderColor $DARK_DARK
+	FontColor $LIGHT
+}
+!endsub
+
+!startsub component
+
+skinparam component {
+	$primary_scheme()
+}
+!endsub
+
+!startsub interface
+
+skinparam interface {
+	BackgroundColor  $DANGER_DARK
+	BorderColor  $DANGER
+	FontColor $DARK
+}
+!endsub
+
+!startsub storage
+
+skinparam storage {
+	BackgroundColor $WARNING
+  	BorderColor $WARNING_DARK
+	FontColor $WARNING_TEXT
+}
+!endsub
+
+!startsub node
+
+skinparam node {
+	BackgroundColor $BGCOLOR
+	BorderColor $PRIMARY_LIGHT
+	FontColor $PRIMARY_TEXT
+}
+!endsub
+
+!startsub cloud
+
+skinparam cloud {
+	BackgroundColor $DARK-black
+	BorderColor $DARK
+	FontColor $LIGHT
+}
+!endsub
+
+!startsub database
+
+skinparam database {
+	$primary_scheme()
+	BackgroundColor  $BGCOLOR
+}
+!endsub
+
+!startsub class
+
+skinparam class {
+	$primary_scheme()
+	HeaderBackgroundColor $PRIMARY_LIGHT
+	StereotypeFontColor $DARK
+	BorderThickness 1
+	AttributeFontColor $LIGHT
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub object
+
+skinparam object {
+	$primary_scheme()
+	StereotypeFontColor $DARK
+	BorderThickness 1
+	AttributeFontColor $SECONDARY_TEXT
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub usecase
+
+skinparam usecase {
+	$primary_scheme()
+	BorderThickness 2
+	StereotypeFontColor $PRIMARY
+}
+!endsub
+
+!startsub rectangle
+
+skinparam rectangle {
+	$primary_scheme()
+	BackgroundColor $BGCOLOR
+	BorderThickness 2
+	StereotypeFontColor $PRIMARY
+}
+!endsub
+
+!startsub package
+
+skinparam package {
+	$primary_scheme()
+	BackgroundColor $BGCOLOR
+	BorderThickness 2
+}
+!endsub
+
+!startsub folder
+
+skinparam folder {
+	BackgroundColor $SECONDARY_LIGHT
+  	BorderColor $WARNING
+	FontColor $WARNING
+	BorderThickness 2
+}
+!endsub
+
+!startsub frame
+
+skinparam frame {
+	BackgroundColor $SECONDARY_LIGHT
+  	BorderColor $INFO
+	FontColor $INFO
+	BorderThickness 2
+}
+!endsub
+
+!startsub state
+
+skinparam state {
+	$primary_scheme()
+	StartColor $INFO
+	EndColor $INFO
+	AttributeFontColor $SECONDARY_TEXT
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub queue
+
+skinparam queue {
+	$primary_scheme()
+}
+!endsub
+
+!startsub card
+
+skinparam card {
+	BackgroundColor $INFO
+	BorderColor $INFO_DARK
+	FontColor $INFO_TEXT
+}
+!endsub
+
+!startsub file
+
+skinparam file {
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	BorderColor $INFO
+	FontColor $SECONDARY_TEXT
+}
+!endsub
+
+!startsub stack
+
+skinparam stack {
+	$primary_scheme()
+}
+!endsub
+
+!if %variable_exists("NEWSTYLE")
+<style>
+wbsDiagram {
+    LineColor $PRIMARY
+    BorderThickness 3
+    BackgroundColor $LIGHT
+    FontColor $PRIMARY_TEXT
+    :depth(0) {
+        fontSize 16
+        fontStyle bold
+        fontColor $SECONDARY
+    }
+    :depth(1) {
+        fontSize 14
+        padding 5
+        fontStyle bold
+    }
+    :depth(2) {
+        fontSize 12
+        padding 4
+    }
+    :depth(3) {
+        fontSize 11
+        padding 3
+        fontColor $INFO
+    }
+
+}
+</style>
+!endif
+
+
+[ObjectPool] as op
+[Proxy] as proxy
+[Object] as obj
+[Object Factory] as fac
+
+op -down-> proxy : Creates
+proxy -right-> obj : Redirects calls
+fac -down-> obj : Creates
+op -right-> fac : calls
+@enduml
+
+@startuml "object-pool-components"
+
+
+
+
+skinparam backgroundColor black
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Verdana"
+    defaultFontSize   12
+    defaultTextAlignment center
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Verdana"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           8
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               5
+skinparam ArrowColor            #484848
+skinparam stereotype {
+    CBackgroundColor #3a3a3a
+    CBorderColor #6d6d6d
+    ABackgroundColor #33ff33
+    ABorderColor #00cc00
+    IBackgroundColor #ff3333
+    IBorderColor #cc0000
+    EBackgroundColor #ff9933
+    EBorderColor #cc6600
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #fefefe
+	BorderColor	                 #3a3a3a
+	FontSize	    	         20
+	BorderRoundCorner            8
+	BorderThickness 	         1
+	BackgroundColor              #6d6d6d-#484848
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #262626
+	FontColor #fff200
+}
+
+	skinparam swimlane {
+	BorderColor #0060a8
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam arrow {
+	Thickness 3
+	Color #303030
+	FontColor $FGCOLOR
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor black
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor black
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor black
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #fff200
+	ReferenceBackgroundColor black
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #595959
+	BackgroundColor black
+}
+
+
+skinparam collections {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam control {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam entity {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam boundary {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $WHITE
+}
+
+
+skinparam artifact {
+	BackgroundColor #484848
+	BorderColor $DARK_DARK
+	FontColor #fff200
+}
+
+
+skinparam component {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam interface {
+	BackgroundColor  #cc0000
+	BorderColor  #ff0000
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor black
+	BorderColor #595959
+	FontColor #fff200
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #fff200
+}
+
+
+skinparam database {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	BackgroundColor  black
+}
+
+
+skinparam class {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	HeaderBackgroundColor #595959
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fff200
+	AttributeFontSize 11
+}
+
+
+skinparam object {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	BackgroundColor black
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	BackgroundColor black
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #fff200
+	BorderColor #262626
+	BackgroundColor #595959-#262626
+}
+
+
+
+[ObjectPool] as op
+[Proxy] as proxy
+[Object] as obj
+[Object Factory] as fac
+
+op -down-> proxy : Creates
+proxy -right-> obj : Redirects calls
+fac -down-> obj : Creates
+op -right-> fac : calls
+@enduml
+
+PlantUML version 1.2020.19(Mon Oct 12 15:10:01 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>
