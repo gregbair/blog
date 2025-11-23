@@ -1,4 +1,4 @@
 [submodule "themes/console"]
 	path = themes/console
 	url = git@github.com:gregbair/console-hugo-theme.git
-	branch = new-theme
+	branch = main
